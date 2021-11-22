@@ -1,0 +1,18 @@
+specVersion: 0.0.1
+description: AccountBalances
+repository: ''
+schema: ./schema.graphql
+network:
+  endpoint: wss://polkadot.api.onfinality.io/public-ws
+  dictionary: https://api.subquery.network/sq/subquery/dictionary-polkadot
+dataSources:
+  - name: main
+    kind: substrate/Runtime
+    startBlock: 1
+    mapping:
+      handlers:
+        - handler: handleEvent
+          kind: substrate/EventHandler
+          filter:
+            module: balances
+            method: Deposit
